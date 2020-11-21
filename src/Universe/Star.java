@@ -31,10 +31,11 @@ public class Star extends Entity
 	@Override
 	public void render(Graphics g)
 	{
-		int zoomRadius = (int) (radius/handler.getCamera().getZoomLevel());
+		//drawX / drawY effected by zoom
+		int zoomDiameter = (int) (radius/handler.getCamera().getZoomLevel())*2;
 		g.setColor(Color.YELLOW);
-		if(zoomRadius >= 2)
-			g.fillOval((int)(drawX), (int)(drawY), zoomRadius, zoomRadius);
+		if(zoomDiameter >= 2)
+			g.fillOval((int)(drawX), (int)(drawY), zoomDiameter, zoomDiameter);
 		else
 			g.fillOval((int)(drawX), (int)(drawY), 2, 2);
 
@@ -42,15 +43,15 @@ public class Star extends Entity
 		{
 			drawDebugVectors(g);
 			g.setColor(Color.WHITE);
-			g.drawString(mass+"",(int)(drawX), (int)(drawY));
+			g.drawString(velocity.getMagnitude()+"",(int)(drawX), (int)(drawY-10));
 		}
 	}
 	
 	public void drawDebugVectors(Graphics g)
 	{
 		g.setColor(Color.RED);
-		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.velocity.getX()*30), (int)drawYCenter + (int)(this.velocity.getY()*30));
+		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.velocity.getX()*20), (int)drawYCenter + (int)(this.velocity.getY()*20));
 		g.setColor(Color.GREEN);
-		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.netForce.getX()/300),(int)drawYCenter + (int)(this.netForce.getY()/300));
+		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.netForce.getX()),(int)drawYCenter + (int)(this.netForce.getY()));
 	}
 }

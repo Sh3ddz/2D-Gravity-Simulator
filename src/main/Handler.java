@@ -86,13 +86,6 @@ public class Handler
 	
 	public float distform(float x, float y, float x1, float y1)
 	{
-	   return ((float) Math.sqrt((Math.pow((x1-x),2))+(Math.pow((y1-y),2))));
+		return ((float) Math.sqrt((Math.pow((x1 - x), 2)) + (Math.pow((y1 - y), 2))));
 	}
-	
-	//finds the hypotenuse.
-	public float pythagorean(float a, float b)
-	{
-		return 0;
-	}
-	
 }

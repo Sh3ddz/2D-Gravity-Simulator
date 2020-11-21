@@ -38,7 +38,7 @@ public class Application implements Runnable
 	
 	//config
     private int TPS = 0;
-    private int FPS = 0;
+    public static int FPS = 0;
     private int seconds = 0;
     private int minutes = 0;
     private int hours = 0;
@@ -113,7 +113,6 @@ public class Application implements Runnable
 		 	 g.drawString("zoom: "+handler.getCamera().getZoomLevel(), 0, 36);
 		 	 g.drawString("paused: "+handler.getController().pausedGame, 0, 48);
 		 	 g.drawString("drawtails: "+handler.getController().drawTails, 0, 60);
-		 	 g.drawString("entity centered on: "+handler.getController().entityCenteredOn, 0, 72);
 	 	 }
 		
 	 	 //End Drawing!
@@ -126,10 +125,10 @@ public class Application implements Runnable
    	
     	init();
    	
-    	int tps = 60; //60 ticks per second.
-    	int fps = Integer.MAX_VALUE; //unlimited frames per second.
+    	double tps = 60; //60 ticks per second.
+	    double maxFps = Integer.MAX_VALUE; //unlimited frames per second.
     	double timePerTick = 1000000000 / tps;
-    	double timePerRender = 1000000000 / fps;
+    	double timePerRender = 1000000000 / maxFps;
     	double delta = 0;
     	double delta2 = 0;
     	long now;

@@ -14,7 +14,7 @@ public class KeyManager implements KeyListener, MouseListener, MouseMotionListen
 {
 	private boolean[] keys;
 	public boolean up, down, left, right, shift, upArrow, downArrow, leftArrow, rightArrow, debugMode, leftClick, rightClick, middleClick, mouseWheelUp, mouseWheelDown, dragging;
-	public boolean t, p, r, tab;
+	public boolean t, p, r, tab, esc, backspace;
 	public boolean holding, released;
 	public int mX,mY,cX,cY,dX,dY;
 	
@@ -50,6 +50,10 @@ public class KeyManager implements KeyListener, MouseListener, MouseMotionListen
 			r = true;
 		if(e.getKeyCode() == KeyEvent.VK_TAB)
 			tab = true;
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			esc = true;
+		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+			backspace = true;
 	}
 
 	@Override

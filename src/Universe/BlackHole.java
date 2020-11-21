@@ -10,7 +10,7 @@ public class BlackHole extends Entity
 	public BlackHole(Handler handler, float x, float y, long mass)
 	{
 		super(handler, x, y, mass);
-		this.density = 1000;
+		this.density = 500;
 		calculateRadius(mass);
 	}
 	
@@ -31,14 +31,14 @@ public class BlackHole extends Entity
 	@Override
 	public void render(Graphics g)
 	{
-		int zoomRadius = (int) (radius/handler.getCamera().getZoomLevel());
+		int zoomDiameter = (int) (radius/handler.getCamera().getZoomLevel()*2);
 		g.setColor(Color.YELLOW);
-		if(zoomRadius >= 2)
+		if(zoomDiameter >= 2)
 		{
 			g.setColor(Color.BLACK);
-			g.fillOval((int)(drawX), (int)(drawY), zoomRadius, zoomRadius);
+			g.fillOval((int)(drawX), (int)(drawY), zoomDiameter, zoomDiameter);
 			g.setColor(Color.WHITE);
-			g.drawOval((int)(drawX-1), (int)(drawY-1), (int)zoomRadius+2, (int)zoomRadius+2);
+			g.drawOval((int)(drawX-1), (int)(drawY-1), (int)zoomDiameter+2, (int)zoomDiameter+2);
 		}
 		else
 		{
@@ -59,8 +59,8 @@ public class BlackHole extends Entity
 	public void drawDebugVectors(Graphics g)
 	{
 		g.setColor(Color.RED);
-		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.velocity.getX()*30), (int)drawYCenter + (int)(this.velocity.getY()*30));
+		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.velocity.getX()*20), (int)drawYCenter + (int)(this.velocity.getY()*20));
 		g.setColor(Color.GREEN);
-		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.netForce.getX()/300),(int)drawYCenter + (int)(this.netForce.getY()/300));
+		g.drawLine((int)drawXCenter, (int)drawYCenter, (int)drawXCenter + (int)(this.netForce.getX()),(int)drawYCenter + (int)(this.netForce.getY()));
 	}
 }
